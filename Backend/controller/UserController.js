@@ -6,10 +6,11 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 module.exports = class UserController {
+  // Função de registro
   static async register(req, res) {
     const { name, email, phone, password, confirmpassword } = req.body;
 
-    //validation
+    // Validação dos campos
     if (!name || !email || !phone || !password || !confirmpassword) {
       return res.status(422).json({ message: "Please fill all the fields" });
     }
@@ -19,17 +20,17 @@ module.exports = class UserController {
         .json({ message: "Password and confirm password should be same" });
     }
 
-    //check if user exist
+    // Verificar se o usuário já existe
     const userExist = await User.findOne({ email: email });
     if (userExist) {
       return res.status(422).json({ message: "Email already exist" });
     }
 
-    //create  password
+    // Criar senha criptografada
     const salt = await bcrypt.genSalt(12);
     const passwordHash = await bcrypt.hash(password, salt);
 
-    //create user
+    // Criar usuário
     const user = new User({
       name: name,
       email: email,
@@ -44,6 +45,7 @@ module.exports = class UserController {
     }
   }
 
+  // Função de login
   static async login(req, res) {
     const { email, password } = req.body;
 
@@ -51,35 +53,37 @@ module.exports = class UserController {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    if (!email) {
-      return res.status(404).json({ message: "Email not found" });
-    }
-    if (!password) {
-      return res.status(404).json({ message: "Password required!" });
-    }
-    //check password
+
+    // Verificar senha
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(404).json({ message: "Invalid password" });
     }
-    //create token
+
+    // Criar token de autenticação
     await createUserToken(user, req, res);
   }
 
+  // Verificar usuário logado
   static async checkUser(req, res) {
     let currentUser;
     if (req.headers.authorization) {
       const token = getToken(req);
-      const decoded = jwt.verify(token, "ourSecret");
-      currentUser = await User.findById(decoded.id);
-      currentUser.password = undefined;
+      try {
+        const decoded = jwt.verify(token, "ourSecret");
+        currentUser = await User.findById(decoded.id);
+        currentUser.password = undefined;  // Não retornar a senha
+      } catch (error) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
     } else {
       currentUser = null;
       return res.status(401).json({ message: "Unauthorized" });
     }
-    req.status(200).send(currentUser);
+    res.status(200).send(currentUser);
   }
 
+  // Buscar usuário por ID
   static async getUserById(req, res) {
     const id = req.params.id;
 
@@ -89,25 +93,26 @@ module.exports = class UserController {
     }
     res.status(200).json({ user });
   }
-  //Edit user
+
+  // Editar usuário
   static async editUser(req, res) {
     const id = req.params.id;
     const token = getToken(req);
     const user = await getUserByToken(token);
 
- 
-    if(req.file){
-        user.image = req.file.filename;
-    }
-
-    // validation
+    // Verificar se o usuário está autenticado
     if (!user) {
       return res.status(401).json({ message: "Unauthorized" });
     }
 
+    // Atualizar imagem, se fornecida
+    if (req.file) {
+      user.image = req.file.filename;
+    }
+
+    // Validação dos campos
     const { name, email, password, phone, confirmpassword } = req.body;
 
-    // validation
     if (!name) {
       return res.status(400).json({ message: "Name is required" });
     }
@@ -117,17 +122,19 @@ module.exports = class UserController {
       return res.status(400).json({ message: "Email is required" });
     }
 
-    // verify email
-    const userExists = await User.findOne({ email });
-    if (user.email !== email && userExists) {
-      return res.status(400).json({ message: "Email already in use" });
+    // Verificar se o email já está em uso
+    if (email !== user.email) {
+      const userExists = await User.findOne({ email });
+      if (userExists) {
+        return res.status(400).json({ message: "Email already in use" });
+      }
     }
     user.email = email;
 
     if (password !== confirmpassword) {
       return res.status(400).json({ message: "Passwords do not match" });
-    } else if (password === confirmpassword && password != null) {
-      // Hash new password
+    } else if (password && confirmpassword) {
+      // Hash da nova senha
       const salt = await bcrypt.genSalt(12);
       const passwordHash = await bcrypt.hash(password, salt);
       user.password = passwordHash;
@@ -143,7 +150,7 @@ module.exports = class UserController {
         { _id: user._id },
         { $set: user },
         { new: true }
-      ); //save user
+      ); // Atualizar o usuário no banco de dados
 
       res.status(200).json({
         message: "User updated successfully",

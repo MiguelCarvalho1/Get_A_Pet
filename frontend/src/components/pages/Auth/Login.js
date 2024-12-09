@@ -2,7 +2,7 @@
 function Login(){
     return(
         <section>
-            <h>Login</h>
+            <h1>Login</h1>
         </section>
     )
 
