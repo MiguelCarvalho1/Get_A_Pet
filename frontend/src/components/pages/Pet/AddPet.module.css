@@ -1,0 +1,16 @@
+.addpet_header {
+    text-align: center;
+    margin-bottom: 1em;
+    font-family: 'Arial', sans-serif;
+}
+
+.addpet_header h1 {
+    margin-bottom: 0.5em;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.addpet_header p {
+    font-size: 1rem;
+    color: #555;
+}
