@@ -32,14 +32,35 @@
   }
   
   /* form de pets */
+  
   .preview_pet_images {
     display: flex;
-    justify-content: center;
-    margin-bottom: 1em;
+    overflow-x: auto;  
+    gap: 1em;  
+    padding: 1em 0; 
+    scroll-snap-type: x mandatory; 
+    -webkit-overflow-scrolling: touch; 
   }
   
   .preview_pet_images img {
-    width: 100px;
+    width: 100px; 
     height: 100px;
-    margin-left: 1em;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    scroll-snap-align: center; 
   }
+  
+  .preview_pet_images img:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  }
+  
+  @media (max-width: 768px) {
+    .preview_pet_images img {
+      width: 80px;  
+      height: 80px;
+    }
+  }
+  

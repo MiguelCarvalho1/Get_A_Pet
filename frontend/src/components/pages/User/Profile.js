@@ -29,8 +29,8 @@ function Profile() {
       })
   }, [token])
 
-  function handleChange(e) {
-    setUser({ ...user, [e.target.name]: e.target.value })
+  function handleUserChange(e) {
+    setUser({ ...user, [e.target.name]: e.target.value });
   }
 
   function onFileChange(e) {
@@ -98,7 +98,7 @@ function Profile() {
           type="email"
           name="email"
           placeholder="Enter your e-mail address"
-          handleOnChange={handleChange}
+          handleOnChange={handleUserChange}
           value={user.email || ''}
         />
         <Input
@@ -106,7 +106,7 @@ function Profile() {
           type="text"
           name="name"
           placeholder="Enter the name"
-          handleOnChange={handleChange}
+          handleOnChange={handleUserChange}
           value={user.name || ''}
         />
         <Input
@@ -114,7 +114,7 @@ function Profile() {
           type="text"
           name="phone"
           placeholder="Enter your phone number"
-          handleOnChange={handleChange}
+          handleOnChange={handleUserChange}
           value={user.phone || ''}
         />
         <Input
@@ -122,14 +122,14 @@ function Profile() {
           type="password"
           name="password"
           placeholder="Enter your password"
-          handleOnChange={handleChange}
+          handleOnChange={handleUserChange}
         />
         <Input
           text="Password confirmation"
           type="password"
           name="confirmpassword"
           placeholder="Confirm your password"
-          handleOnChange={handleChange}
+          handleOnChange={handleUserChange}
         />
         <input type="submit" value="Edit" />
       </form>
