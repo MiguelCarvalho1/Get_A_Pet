@@ -71,14 +71,14 @@ function MyPets() {
     return (
         <section>
             <h1>My Pets</h1>
-            <Link to="/pet/add">Add Pets</Link>
+            <Link to="/pet/add" className={styles.modern_button}>Register Pet</Link>
             <div className={styles.petslist_container}>
         {pets.length > 0 &&
           pets.map((pet) => (
             <div key={pet._id} className={styles.petlist_row}>
               <RoundedImage
-                src={`${process.env.REACT_APP_API}/images/pets/${pet.images[0]}`}
-                alt={pet.name}
+                 src={`${process.env.REACT_APP_API}/images/pets/${pet.images[0]}`}
+                 alt={pet.name}
                 width="px75"
               />
               <span className="bold">{pet.name}</span>

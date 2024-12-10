@@ -1,0 +1,78 @@
+.pet_home_header {
+    margin-bottom: 2em;
+    text-align: center;
+  }
+  
+  .pet_home_header h1 {
+    margin-bottom: 0.3em;
+    font-size: 2em;
+    color: #16479d;
+  }
+  
+  .pet_container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5%;
+    justify-content: flex-start;
+  }
+  
+  .pet_card {
+    width: calc(25% - 1.5%);
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .pet_card:hover {
+    transform: translateY(-10px);
+  }
+  
+  .pet_card_image {
+    background-size: cover;
+    background-position: center;
+    height: 200px;
+  }
+  
+  .pet_card h3 {
+    color: #16479d;
+    font-size: 1.4em;
+    margin: 0.5em;
+  }
+  
+  .pet_card p {
+    padding: 0 1em 1em;
+    color: #555;
+    font-size: 1em;
+  }
+  
+  .pet_card a {
+    display: block;
+    width: 90%;
+    margin: 0 auto 1em;
+    background-color: #ffd400;
+    color: #16479d;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .pet_card a:hover {
+    background-color: #e7c30d;
+    color: #fff;
+  }
+  
+  .adopted_text {
+    font-weight: bold;
+    color: #25b456;
+    text-align: center;
+    padding: 1em;
+    background-color: #e8f9e3;
+    border-radius: 5px;
+    margin: 1em 0;
+  }
+  
