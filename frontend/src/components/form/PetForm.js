@@ -8,7 +8,7 @@ function PetForm({ handleSubmit, petData, btnText }) {
   const [pet, setPet] = useState(petData || {});
   const [preview, setPreview] = useState([]);
 
-  const colors = ["Black", "Grey", "Caramel", "White"];
+  const colors = ["Black", "Grey", "Caramel", "White", "Black and White" , "Spotted", "White, grey and black"];
 
  
   function onFileChange(e) {
