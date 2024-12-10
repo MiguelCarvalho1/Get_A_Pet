@@ -21,7 +21,7 @@ export default function useAuth() {
   }, []);
 
   async function register(user) {
-    let msgText = 'Cadastro realizado com sucesso!';
+    let msgText = 'Registration successful!';
     let msgType = 'success';
 
     try {
@@ -31,7 +31,7 @@ export default function useAuth() {
 
       await authUser(data);
     } catch (error) {
-      msgText = error.response?.data?.message || 'Erro no cadastro.';
+      msgText = error.response?.data?.message || 'Registration error.';
       msgType = 'error';
     }
 
@@ -39,7 +39,7 @@ export default function useAuth() {
   }
 
   async function login(user) {
-    let msgText = 'Login realizado com sucesso!';
+    let msgText = 'Login successful!';
     let msgType = 'success';
 
     try {
@@ -49,7 +49,7 @@ export default function useAuth() {
 
       await authUser(data);
     } catch (error) {
-      msgText = error.response?.data?.message || 'Erro no login.';
+      msgText = error.response?.data?.message || 'Login error.';
       msgType = 'error';
     }
 
@@ -63,7 +63,7 @@ export default function useAuth() {
   }
 
   function logout() {
-    const msgText = 'Logout realizado com sucesso!';
+    const msgText = 'Logout successful!';
     const msgType = 'success';
 
     setAuthenticated(false);
