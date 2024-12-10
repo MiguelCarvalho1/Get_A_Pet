@@ -39,7 +39,7 @@ This should provide a more comprehensive guide for setting up and running your "
 │   ├── models/                 # Models
 │   ├── routes/                 # Routes
 │   ├── config/                 # Configuration (e.g., MongoDB connection)
-│   └── server.js               # Main entry file to start the server
+│   └── index.js               # Main entry file to start the server
 └── frontend/                   # Frontend in React
     ├── assets/                 # Images, icons, and other assets
     ├── components/             # Reusable components
