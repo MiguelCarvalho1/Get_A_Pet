@@ -19,6 +19,17 @@
 - **Authentication**: JWT (JSON Web Tokens)
 - **Styling**: CSS, Styled-components
 
+
+
+### Key Updates
+
+- The instructions now include detailed steps for **setting up the backend and frontend**, configuring MongoDB, and running the project.
+- **Environment variables**: A `.env` file is required for the backend, and the API URL is mentioned for the frontend to interact with the backend.
+- Added notes on how to **test the project** and ensure the backend and frontend are working together. 
+
+This should provide a more comprehensive guide for setting up and running your "Get a Pet" project.
+
+
 ## Project Structure
 
 ```plaintext
@@ -36,4 +47,4 @@
     └── App.js               # Main application file
 
 
-This README includes the main details about your project, such as the description, features, technologies used, and instructions for running the project both for the backend and frontend.
+
