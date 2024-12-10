@@ -1,23 +1,23 @@
-import { useState, useContext } from 'react'
-import Input from '../../form/Input'
-import { Link } from 'react-router-dom'
-
-import styles from '../../form/Form.module.css'
+import { useState, useContext } from 'react';
+import Input from '../../form/Input';
+import { Link } from 'react-router-dom';
+import styles from '../../form/Form.module.css';
 
 /* contexts */
-import { Context } from '../../../context/UserContext'
+import { Context } from '../../../context/UserContext';
 
 function Register() {
-  const [user, setUser] = useState({})
-  const { register } = useContext(Context)
+  const [user, setUser] = useState({});
+  const { register } = useContext(Context);
 
   function handleChange(e) {
-    setUser({ ...user, [e.target.name]: e.target.value })
+    setUser({ ...user, [e.target.name]: e.target.value });
   }
 
   function handleSubmit(e) {
-    e.preventDefault()
-    register(user)
+    e.preventDefault();
+    console.log(user);
+    register(user);
   }
 
   return (
@@ -30,6 +30,7 @@ function Register() {
           name="name"
           placeholder="Type your name"
           handleOnChange={handleChange}
+          autocomplete="name"
         />
         <Input
           text="Phone"
@@ -37,6 +38,7 @@ function Register() {
           name="phone"
           placeholder="Type your phone"
           handleOnChange={handleChange}
+          autocomplete="tel"
         />
         <Input
           text="Email"
@@ -44,6 +46,7 @@ function Register() {
           name="email"
           placeholder="Type your email"
           handleOnChange={handleChange}
+          autocomplete="email"
         />
         <Input
           text="Password"
@@ -51,6 +54,7 @@ function Register() {
           name="password"
           placeholder="Type your password"
           handleOnChange={handleChange}
+          autocomplete="new-password"
         />
         <Input
           text="Confirm Password"
@@ -58,13 +62,19 @@ function Register() {
           name="confirmpassword"
           placeholder="Confirm password"
           handleOnChange={handleChange}
+          autocomplete="new-password"
         />
-        <input type="submit" value="Register" />
+        <input
+          type="submit"
+          value="Register"
+          disabled={!user.name || !user.email || !user.password || !user.confirmpassword}
+        />
       </form>
       <p>
-        Already have an account? <Link to="/login"> Click here</Link>
+        Already have an account? <Link to="/login">Click here</Link>
       </p>
     </section>
   );
 }
+
 export default Register;

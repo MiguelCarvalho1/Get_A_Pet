@@ -1,6 +1,6 @@
 import api from '../utils/api';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // Use useNavigate here
+import { useNavigate } from 'react-router-dom';
 import useFlashMessage from './useFlashMessage';
 
 export default function useAuth() {
@@ -21,14 +21,17 @@ export default function useAuth() {
   }, []);
 
   async function register(user) {
-    let msgText = 'Registration successful!';
+    let msgText = 'Cadastro realizado com sucesso!';
     let msgType = 'success';
 
     try {
-      const data = await api.post('/users/register', user);
+      const data = await api.post('/users/register', user).then((response) => {
+        return response.data;
+      });
+
       await authUser(data);
     } catch (error) {
-      msgText = error.response ? error.response.data.message : 'Error during registration';
+      msgText = error.response?.data?.message || 'Erro no cadastro.';
       msgType = 'error';
     }
 
@@ -36,14 +39,17 @@ export default function useAuth() {
   }
 
   async function login(user) {
-    let msgText = 'Login successful!';
+    let msgText = 'Login realizado com sucesso!';
     let msgType = 'success';
 
     try {
-      const data = await api.post('/users/login', user);
+      const data = await api.post('/users/login', user).then((response) => {
+        return response.data;
+      });
+
       await authUser(data);
     } catch (error) {
-      msgText = error.response ? error.response.data.message : 'Error during login';
+      msgText = error.response?.data?.message || 'Erro no login.';
       msgType = 'error';
     }
 
@@ -52,21 +58,18 @@ export default function useAuth() {
 
   async function authUser(data) {
     setAuthenticated(true);
-    localStorage.setItem('token', JSON.stringify(data.token)); // Save token in localStorage
-    localStorage.setItem('user', JSON.stringify(data.user)); // Save user data in localStorage
-
-    navigate('/'); // Use navigate instead of history.push
+    localStorage.setItem('token', JSON.stringify(data.token));
+    navigate('/'); 
   }
 
   function logout() {
-    const msgText = 'Logout successful!';
+    const msgText = 'Logout realizado com sucesso!';
     const msgType = 'success';
 
     setAuthenticated(false);
     localStorage.removeItem('token');
-    localStorage.removeItem('user');
     api.defaults.headers.Authorization = undefined;
-    navigate('/login'); // Use navigate instead of history.push
+    navigate('/login'); 
 
     setFlashMessage(msgText, msgType);
   }

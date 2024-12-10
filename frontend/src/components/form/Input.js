@@ -1,27 +1,28 @@
-import sytles from "./Input.module.css";
+import styles from "./Input.module.css";
 
 function Input({
-  type,
+  type = "text",        
   text,
   name,
-  placeholder,
+  placeholder = "",    
   handleOnChange,
   value,
   multiple,
+  autocomplete = "",   
 }) {
   return (
-    
-     <div className={sytles.form_control}>
+    <div className={styles.form_control}>
       <label htmlFor={name}>{text}:</label>
       <input
-       type={type}
-        name = {name}
-         id = {name}
-          placeholder={placeholder}
-           onChange={handleOnChange}
-           value = {value}
-           {...({multiple}? {multiple}: '')}
-            />
+        type={type}
+        name={name}
+        id={name}
+        placeholder={placeholder}
+        onChange={handleOnChange}
+        value={value}
+        multiple={multiple && true} 
+        autoComplete={autocomplete}  
+      />
     </div>
   );
 }
