@@ -1,21 +1,72 @@
 .form_control {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1em;
-  }
-  
-  .form_control label {
-    margin-bottom: 0.3em;
-    font-weight: bold;
-    font-size: 0.8em;
-  }
-  
-  .form_control input {
-    padding: 0.7em;
-    border: 1px solid #777;
-    border-radius: 5px;
-  }
-  
-  .form_control input::placeholder {
-    color: #7b7b7b;
-  }
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5em;
+  position: relative;
+}
+
+.form_control label {
+  margin-bottom: 0.3em;
+  font-weight: bold;
+  font-size: 0.9em;
+  color: #333;
+  transition: 0.3s ease;
+}
+
+.form_control input {
+  padding: 0.8em;
+  border: 1px solid #777;
+  border-radius: 5px;
+  font-size: 1em;
+  outline: none;
+  transition: all 0.3s ease;
+  background-color: #f7f7f7;
+}
+
+.form_control input::placeholder {
+  color: #7b7b7b;
+}
+
+.form_control input:focus {
+  border-color: #16479d;
+  background-color: #fff;
+  box-shadow: 0 0 8px rgba(22, 71, 157, 0.5);
+}
+
+.form_control input:focus + label,
+.form_control input:valid + label {
+  font-size: 0.9em;
+  color: #16479d;
+  transform: translateY(-1.2em);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.form_control input:hover {
+  border-color: #ffd400;
+  cursor: pointer;
+}
+
+.form_control input:focus::placeholder {
+  color: transparent; 
+}
+
+
+.form_control input:valid {
+  border-color: #25b456;
+}
+
+.form_control input:valid::placeholder {
+  color: transparent; 
+}
+
+.form_control input:invalid {
+  border-color: #e74c3c;
+}
+
+.form_control input:invalid::placeholder {
+  color: #e74c3c; 
+}
+
+.form_control input:focus::placeholder {
+  color: transparent;
+}

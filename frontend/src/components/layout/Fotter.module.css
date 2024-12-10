@@ -10,42 +10,86 @@
     padding: 20px;
     font-family: 'Arial', sans-serif; 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
-}
-
-.footer h1 {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .footer h1 {
     font-size: 24px;
     margin-bottom: 10px;
-}
-
-.footer p {
+    font-weight: 600;
+    animation: slideIn 0.8s ease-out forwards;
+  }
+  
+  .footer p {
     font-size: 16px;
     line-height: 1.5;
     margin-bottom: 20px;
     text-align: center;
-}
-
-.footer a {
+    opacity: 0;
+    animation: fadeIn 1s 0.5s ease-out forwards;
+  }
+  
+  .footer a {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
-    transition: color 0.3s ease; 
-}
-
-.footer a:hover {
-    color: #f5a623;
-}
-
-.footer .social-icons {
-    display: flex;
-    gap: 15px;
+    transition: color 0.3s ease, transform 0.3s ease;
+    font-size: 18px;
     margin-top: 10px;
-}
-
-.footer .social-icons a {
-    font-size: 20px;
-    transition: transform 0.3s ease; 
-}
-
-.footer .social-icons a:hover {
-    transform: scale(1.2); 
-}
+  }
+  
+  .footer a:hover {
+    color: #f5a623;
+    transform: scale(1.1);
+  }
+  
+  .footer .social-icons {
+    display: flex;
+    gap: 20px;
+    margin-top: 15px;
+    opacity: 0;
+    animation: fadeInIcons 1s 1s ease-out forwards;
+  }
+  
+  .footer .social-icons a {
+    font-size: 22px;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  
+  .footer .social-icons a:hover {
+    transform: scale(1.2);
+    color: #f5a623;
+  }
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideIn {
+    0% {
+      transform: translateY(20px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeInIcons {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

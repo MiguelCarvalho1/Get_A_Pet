@@ -1,16 +1,35 @@
 .addpet_header {
     text-align: center;
-    margin-bottom: 1em;
+    margin-bottom: 1.5em;
     font-family: 'Arial', sans-serif;
-}
-
-.addpet_header h1 {
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  
+  .addpet_header:hover {
+    transform: translateY(-5px);
+    color: #ffd400; 
+  }
+  
+  .addpet_header h1 {
     margin-bottom: 0.5em;
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: bold;
-}
-
-.addpet_header p {
-    font-size: 1rem;
+    color: #16479d;
+    transition: font-size 0.3s ease, transform 0.3s ease;
+  }
+  
+  .addpet_header h1:hover {
+    font-size: 2.8rem; 
+    transform: scale(1.05); 
+  }
+  
+  .addpet_header p {
+    font-size: 1.2rem;
     color: #555;
-}
+    transition: color 0.3s ease;
+  }
+  
+  .addpet_header p:hover {
+    color: #25b456; 
+  }
+  

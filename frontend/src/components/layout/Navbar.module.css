@@ -3,10 +3,18 @@
   justify-content: space-between;
   align-items: center;
   padding: 1em 1.5em;
-  background: linear-gradient(135deg, #FFD400, #FF6A00); 
+  background: linear-gradient(135deg, #FFD400, #FF6A00);
   color: #16479d;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-  font-family: 'Arial', sans-serif; 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: background 0.3s ease;
+}
+
+.navbar:hover {
+  background: linear-gradient(135deg, #FF6A00, #FFD400);
 }
 
 .navbar_logo {
@@ -16,12 +24,13 @@
 
 .navbar_logo img {
   width: 40px;
-  margin-right: .8em;
-  transition: transform 0.3s ease; 
+  margin-right: 0.8em;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .navbar_logo img:hover {
-  transform: scale(1.1); 
+  transform: scale(1.1);
+  opacity: 0.9;
 }
 
 .navbar ul {
@@ -36,9 +45,26 @@
   color: #16479d;
   font-weight: bold;
   cursor: pointer;
-  padding: .5em 1em;
-  border-radius: 5px;
-  transition: background-color 0.3s ease, color 0.3s ease; 
+  padding: 0.5em 1em;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.navbar li::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background-color: #16479d;
+  transition: width 0.3s ease;
+}
+
+.navbar a {
+  color: inherit;
+  text-decoration: none;
 }
 
 .navbar li:hover {
@@ -46,8 +72,46 @@
   color: #FFF;
 }
 
+.navbar li:hover::after {
+  width: 100%;
+}
+
 .navbar li:hover > a {
   color: #FFF;
+}
+
+.navbar a:active {
+  transform: scale(0.98);
+}
+
+.navbar .menu-toggle {
+  display: none;
+  cursor: pointer;
+}
+
+.navbar .menu-toggle span {
+  background-color: #16479d;
+  display: block;
+  height: 3px;
+  width: 25px;
+  margin: 5px auto;
+  transition: all 0.3s ease;
+}
+
+.navbar .menu-toggle:hover span {
+  background-color: #FFD400;
+}
+
+.navbar.open .menu-toggle span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.navbar.open .menu-toggle span:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar.open .menu-toggle span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
 }
 
 /* Responsividade */
@@ -56,13 +120,31 @@
     flex-direction: column;
     align-items: flex-start;
   }
+
   .navbar ul {
     flex-direction: column;
     width: 100%;
     margin-top: 1em;
+    display: none;
   }
+
+  .navbar.open ul {
+    display: flex;
+  }
+
   .navbar li {
     width: 100%;
     text-align: left;
+    padding: 1em;
+    transition: background-color 0.3s ease;
+  }
+
+  .navbar li:hover {
+    background-color: #ffd400;
+    color: #16479d;
+  }
+
+  .navbar .menu-toggle {
+    display: block;
   }
 }
