@@ -34,17 +34,25 @@ This should provide a more comprehensive guide for setting up and running your "
 
 ```plaintext
 .
-├── backend/                 # Backend in Node.js
-│   ├── controllers/         # Controllers
-│   ├── models/              # Models
-│   ├── routes/              # Routes
-│   ├── config/              # Configuration (e.g., MongoDB connection)
-│   └── server.js            # Main file to start the server
-└── frontend/                # Frontend in React
-    ├── components/          # Reusable components
-    ├── pages/               # Application pages
-    ├── services/            # Services to interact with the backend
-    └── App.js               # Main application file
+├── backend/                    # Backend in Node.js
+│   ├── controllers/            # Controllers
+│   ├── models/                 # Models
+│   ├── routes/                 # Routes
+│   ├── config/                 # Configuration (e.g., MongoDB connection)
+│   └── server.js               # Main entry file to start the server
+└── frontend/                   # Frontend in React
+    ├── assets/                 # Images, icons, and other assets
+    ├── components/             # Reusable components
+    │   ├── form/               # Form-related components (e.g., login form)
+    │   ├── layout/             # Layout components (e.g., Navbar, Footer)
+    │   └── pages/              # Pages (e.g., Auth, Pet, User)
+    │       ├── auth/           # Authentication pages (e.g., login, register)
+    │       ├── pet/            # Pet-related pages (e.g., pet list, pet details)
+    │       └── user/           # User-related pages (e.g., profile)
+    ├── context/                # React context for global state management
+    ├── hooks/                  # Custom React hooks
+    ├── utils/                  # Utility functions
+    └── App.js                  # Main entry file for React app
 
 
 
